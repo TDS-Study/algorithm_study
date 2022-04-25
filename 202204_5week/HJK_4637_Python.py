@@ -1,22 +1,16 @@
 arr = [0] * (10010)
 
-for i in range(9955, 10000):
-    print("i:", i)
-
-    txt = str(i)
+for i in range(1, 10000):
     val = i
 
-    for j in range(0, len(txt)):
-        val += int(txt[j])
-    print("val:",val)
+    for j in str(i):
+        val += int(j)
 
     if val > 10003:
         break
     
-    arr[val] = i
-    
+    arr[val] = 1    
 
-for idx, h in enumerate(arr[1:10000]):
-    print(idx, " , " , h)
-    #if h == 0:
-    #    print(idx)
+for idx, h in enumerate(arr[0:10000]):
+    if idx != 0 and h == 0:
+        print(idx)
