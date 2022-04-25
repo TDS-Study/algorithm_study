@@ -1,6 +1,6 @@
 arr = [0] * (10010)
 
-for i in range(1, 10000):
+for i in range(9955, 10000):
     print("i:", i)
 
     txt = str(i)
@@ -17,5 +17,6 @@ for i in range(1, 10000):
     
 
 for idx, h in enumerate(arr[1:10000]):
-    if h == 0:
-        print(idx)
+    print(idx, " , " , h)
+    #if h == 0:
+    #    print(idx)
