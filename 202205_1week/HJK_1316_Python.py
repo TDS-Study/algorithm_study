@@ -5,14 +5,14 @@
 # 첫번째 라인 입력은 단어의 갯수 100보다 작거나 같은 자연수 
 n = int(input())
 # 둘째 줄부터 N개의 줄에 단어가 들어온다. 단어는 알파벳 소문자로만 되어있고 중복되지 않으며, 길이는 최대 100이다.
-words = [input() for _ in range(n)]
 
 # 그룹단어의 갯수, 입력 단어와 동일한 숫자로 시작하여 차감한다
 cnt = n
-# 중복되는 알파벳 누적
+# 그룹 알파벳 누적
 chr_list = []
 
-for word in words:
+for i in range(n):
+    word = input()
     chr_list.clear()
 
     for j in word:
