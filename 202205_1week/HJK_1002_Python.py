@@ -10,14 +10,7 @@ n = int(input())
 result = []
 
 for i in range(n):
-    ip1 = input().split(' ')
-    x1 = int(ip1[0])
-    y1 = int(ip1[1])
-    r1 = int(ip1[2])
-
-    x2 = int(ip1[3])
-    y2 = int(ip1[4])
-    r2 = int(ip1[5])
+    x1,y1,r1,x2,y2,r2 = map(int,input().split())
 
     # 두 점 사이의 거리 d = ((x2-x1)제곱+(y2-y1)제곱) 제곱근
     d = (((x2-x1)**2) + ((y2-y1)**2)) ** 0.5
