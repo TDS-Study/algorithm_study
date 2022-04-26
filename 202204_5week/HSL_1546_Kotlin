@@ -1,0 +1,37 @@
+import kotlin.text.max
+import java.util.*
+import java.util.Scanner
+
+fun main(args: Array<String>) {
+    //입력 값 받는 부분        
+    val reader = Scanner(System.`in`)    
+    if (reader.hasNext() == false) return
+    
+    var stringLines = ArrayList<String>()
+    
+    val lineCnt = reader.nextInt()
+    for(index in 1..lineCnt)
+    {
+        stringLines.add(reader.next())
+    }
+        
+    //실제 로직 시작
+    val scoreListString = stringLines[0] //첫번째꺼 기준으로 설정    
+    //val scoreListString = "1 2 4 8 16" //첫번째꺼 기준으로 설정
+    
+    var scoreStringList = scoreListString.split(" ").toTypedArray() //기준이 되는 문자열을 한글자씩 잘라서 배열로 생성.     
+    var scoreIntList = scoreStringList.map(String::toDouble) //기준이 되는 문자열을 한글자씩 잘라서 배열로 생성.         
+    val maxScore = scoreIntList.maxOrNull()?.toInt() ?: 0
+        
+    var newArray = ArrayList<Double>()
+    
+    for(pos in 0..scoreIntList.size-1)
+    {        
+        var newScore = (scoreIntList[pos].toInt()/maxScore.toDouble())*100                
+        newArray.add (newScore)        
+    }    
+        
+	val average = newArray.sum()/newArray.size    
+    println(average.toString())
+}
+   
