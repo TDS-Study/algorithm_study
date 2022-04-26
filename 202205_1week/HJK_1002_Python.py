@@ -25,27 +25,32 @@ for i in range(n):
     # 두 원이 만나는 점의 갯수 x
     x = 0
 
-    if d > (r1+r2):
-        # 두 원이 멀리 떨어진 경우
-        x = 0
-    elif abs(r1-r2) > d:
-        # 큰원 안에 작은원이 있고 안만나는 경우
-        x = 0
-
-    elif d == (r2+r1) or d == abs(r2-r1):
-        # 두 원이 외부에서 1점에서 만나는 경우
-        # 큰원 안에 작은 원이 1점에서 만나는 경우
-        x = 1
-
-    elif d == 0 and r1 == r2:
-        # 두 점의 좌표가 동일하고 r1, r2가 동일하면 무한대
-        x = -1
-
+    if d == 0:
+        # 동심원
+        if r1 == r2:
+            # 두 원 반지름 일치 의 경우 무한대
+            x = -1
+        else:
+            # 안만남
+            x = 0
     else:
-        x = 2
+        if d == (r1 + r2):
+            # 두 원이 외부에서 1점에서 만나는 경우
+            x = 1
+        elif d == abs(r2-r1):
+            # 큰원 안에 작은 원이 1점에서 만나는 경우
+            x = 1
+        elif abs(r1-r2) > d:
+            # 큰원 안에 작은원이 있고 안만나는 경우
+            x = 0        
+        elif d > (r1 + r2):
+            # 두 원이 멀리 떨어진 경우
+            x = 0
+        else:
+            # 나머지의 경우 2점에서 만남
+            x = 2
     
-    result.append(x)
-        
+    result.append(x)        
 
 for j in result:
     print(j)
