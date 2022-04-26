@@ -12,8 +12,8 @@ cnt = n
 chr_list = []
 
 for i in range(n):
-    word = input()
-    chr_list.clear()
+    word = input() #단어를 입력받는다
+    chr_list.clear() #단어마다 알파벳 목록 초기화
 
     for j in word:
 
