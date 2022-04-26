@@ -16,7 +16,7 @@ for word in words:
     chr_list.clear()
 
     for j in word:
-        
+
         if len(chr_list) == 0:
             # 가장 최근 알파벳을 0 인덱스로 부터 쉽게 찾아오기 위해 list 앞쪽에 추가 한다
             chr_list.insert(0, j) 
@@ -31,6 +31,7 @@ for word in words:
 
         else:
             # 이어지지 않는 기존 알파벳이 있으면 차감하고 빠져나간다
+            # 그룹단어인지 추가로 비교하지 않고 그룹단어가 아니면 차감하여 비교횟수를 줄인다
             cnt -= 1
             break
 
