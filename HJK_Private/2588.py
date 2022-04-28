@@ -7,7 +7,14 @@
 
 a, b = [input() for _ in range(2)]
 
+x = 0
+y = 0
 
+for i in reversed(b):
+    c = int(i)
+    t1 = c*int(a)
+    print(t1)
+    y += t1*10**x  # 10 x 승 곱한다)
+    x += 1
 
-print(a)
-print(b)
+print(y)
