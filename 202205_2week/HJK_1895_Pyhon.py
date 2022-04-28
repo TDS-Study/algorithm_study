@@ -34,5 +34,36 @@
 
 """
 
-c, r = map(int, input().split())
+# 입력부
+r, c = map(int, input().split())
+l1 = []
 
+for i in range(r):
+    l1.append(list(map(int, input().split())))
+
+t = int(input())
+
+cnt = 0 # t 보다 크거나 같은 갯수 저장
+l2 = [] # 최종 필터 결과 저장
+
+# 항상 9개의 숫자만 들어오므로 최소한의 연산만 하도록 작성
+def median(l):    
+    l.sort()
+    return l[4]
+
+for i in range(r-2): # 시작 행 번호
+    for j in range(c-2): # 시작 열 번호
+
+        l3 = [] # 중앙값 계산 위한 9개의 숫자 저장
+
+        for ii in range(3):
+            for jj in range(3):
+                l3.append(l1[i+ii][j+jj]) # 3 x 3 필터 저장
+
+        l2.append(median(l3)) # 9개 픽셀의 중앙값 저장
+
+for i in map(int, l2):
+    if i >= t:
+        cnt += 1
+
+print(cnt)
