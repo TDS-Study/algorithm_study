@@ -1,0 +1,54 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std; 
+
+int main()
+{
+	int num;
+	cin >> num;
+	
+	int input[num][6];
+	int result = 0;
+	
+	for(int i = 0; i < num; i++)
+	{
+		for(int j = 0; j < 6; j++)
+		{
+			cin >> input[i][j];
+		}
+	}
+	
+	double distanse = 0;
+	double sub = 0;
+	
+	for(int i = 0; i < num; i++)
+	{
+		int r1 = input[i][2];
+		int r2 = input[i][5];
+		
+		distanse = sqrt(pow(input[i][3] - input[i][0], 2) + pow(input[i][4] - input[i][1], 2));
+		sub = r1 > r2 ? r1 - r2 : r2 - r1;
+		
+		if(distanse == 0 && r1 == r2)
+		{
+			result = -1;
+		}
+		else if(distanse < r1 + r2 && sub < distanse)
+		{
+			result = 2;
+		}
+		else if(distanse == r1 + r2 || sub == distanse)
+		{
+			result = 1;
+		}
+		else
+		{
+			result = 0;
+		}
+		
+		cout << result << endl;
+	}
+	
+	return 0;
+}

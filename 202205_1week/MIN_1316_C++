@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std; 
+
+bool check(string _val, char _ch)
+{
+	for(int i = 0; i < _val.length(); i++)
+	{
+		if(_val[i] == _ch)
+		{
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+int main()
+{
+	int num, group = 0;
+	cin >> num;
+	
+	string str[num];
+	char temp = ' ';
+	bool groupYN = false;
+
+	for(int i = 0; i < num; i++)
+	{
+		cin >> str[i];
+	}
+	
+	for(int i = 0; i < num; i++)
+	{
+		string val = "";
+		temp = ' ';
+		
+		for(int j = 0; j < str[i].length(); j++)
+		{
+			if(temp != str[i][j])
+			{
+				temp = str[i][j];
+				
+				if(check(val, temp))
+				{
+					groupYN = false;
+					break;
+				}
+				else
+				{
+					groupYN = true;
+					val += temp;
+				}
+			}
+		}
+		
+		if(groupYN)
+		{
+			group++;
+		}
+	}
+	
+	cout << group;
+	
+	return 0;
+}
