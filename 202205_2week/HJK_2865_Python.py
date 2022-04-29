@@ -29,26 +29,22 @@
 n, m, k = map(int, input().split())
 
 # 참가자 별 최대 장르 및 점수, 인덱스 = 참가자 id
-entry = []
+entry = [0]*(n+1)
 
 # 장르 수(입력행) 만큼 loop
-for genre in range(m):
+for gn in range(m):
     
     line = input().split()
     
     # 참가자 수 만큼 loop
-    for j in range(0, n*2, 2):        
+    for j in range(0, n*2, 2):
         id, score  = int(line[j]), float(line[j+1])
-        
-        if len(entry) == 0:
-            # 최초 항목 입력
-            entry.insert(id, [genre, score])
+
+        # 기존 참가자 점수보다 높으면 변경한다
+        if entry[id] < score:
+            entry[id] = score
         else:
-            # 기존 참가자 점수보다 높으면 변경한다
-            if entry[id][1] < score:
-                entry[id] = [genre, score]
-            else:
-                pass
-            
-print(entry)
-        
+            pass
+
+entry.sort(reverse=True) # 점수 별 내림차순
+print(round(sum(entry[0:k]),1)) # 인덱스 0부터 k 개 수를 sum
