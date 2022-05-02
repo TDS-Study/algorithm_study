@@ -1,0 +1,101 @@
+import com.sun.xml.internal.fastinfoset.util.StringArray
+import java.util.*
+import kotlin.math.roundToLong
+
+//1316 : 그룹 단어 갯수 구하는 문제
+
+data class Audition(
+    val no : Int
+    ,var score: Double
+)
+
+fun main() = with(Scanner(System.`in`)) {
+    //region 입력단
+    //첫번째 row 입력 string
+    val firstLine = nextLine()
+    var configToken = firstLine.split(' ') // 공백 기준으로 분리
+
+    val candidateCnt = configToken[0].toInt() // 지원자 수
+    val genreCnt = configToken[1].toInt()     // 노래 장르수
+    val finalCnt = configToken[2].toInt()     // 본선 참가자 수
+
+    //두번째 row 입력 string
+    val lines = arrayListOf<String>()
+    repeat(genreCnt) { lines.add(nextLine()) }
+
+    var inputArray = Array(genreCnt){ Array<Audition?>(candidateCnt){null}}
+
+    for(index in 0 until lines.count())
+    {
+        var candidateArray = Array<Audition?>(candidateCnt){null}
+        var splitArray = lines[index].split(' ')
+        //println(splitArray)
+
+        var setIndex = 0
+        for(subIndex in 0 until  splitArray.count() step 2)
+        {
+            var no = splitArray[subIndex].toInt()
+            var score = splitArray[subIndex+1].toDouble()
+            candidateArray.set(setIndex++, Audition(no = no, score = score) )
+        }
+
+        inputArray.set(index, candidateArray)
+    }
+
+    //endregion
+
+    /* 로직 설명
+
+    지원자수 : 4
+    노래 장르수 : 4
+    본선 참가자 수: 3
+
+    4 / 4 / 3
+    4 5.0 / 2 4.0 / 3 2.0 / 1 1.0
+    2 2.0 / 3 1.0 / 1 0.5 / 4 0.3
+    4 6.0 / 3 5.0 / 2 2.0 / 1 0.0
+    1 4.0 / 2 3.0 / 4 0.6 / 3 0.3
+
+    1. 첫 번째 열에서 본선 참가자 수 대로 3개를 조합해서 가장 큰 수의 조합을 만든다. (중복인 경우 큰수를 취한다)
+    2. 그 중에서 가장 작은 수를 다음 열에서 대체할 만한 큰 값이 있는지 검색한다.(참가자 중복 피해서)
+    3. 그렇게 가져온 값의 합을 구한다.
+    */
+
+    var finalCandidate = ArrayList<Audition>()
+
+    for(index in 0 .. candidateCnt-1)
+    {
+        for(genIndex in 0 .. genreCnt-1)
+        {
+            var number = inputArray[genIndex][index]!!.no
+            var score = inputArray[genIndex][index]!!.score
+
+            var duplicateItem = finalCandidate.find { it?.no == number && it?.score < score }
+
+            if (duplicateItem != null)
+            {
+                finalCandidate.remove(duplicateItem)
+                finalCandidate.add(Audition(no = number, score = score))
+            }
+            else if(finalCandidate.filter { it.no == number }.isEmpty())
+            {
+                finalCandidate.add(Audition(no = number, score = score))
+            }
+        }
+    }
+
+    finalCandidate.sortByDescending { it.score }
+
+    var result  = 0.0
+
+    for(index in 0 until finalCnt)
+    {
+        result += finalCandidate[index].score
+    }
+
+    println(roundDigit(result,1))
+}
+
+fun roundDigit(number : Double, digits : Int): Double {
+    return Math.round(number * Math.pow(10.0, digits.toDouble())) / Math.pow(10.0, digits.toDouble())
+}
