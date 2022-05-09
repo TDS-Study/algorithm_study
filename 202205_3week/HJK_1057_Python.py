@@ -26,7 +26,7 @@ l = [0]*newN
 l[KJM-1] = 1
 l[IHS-1] = 1
 
-# 맡붙으면 False
+# 맞붙으면 False
 r = True
 
 while(r):
