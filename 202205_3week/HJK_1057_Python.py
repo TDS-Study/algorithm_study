@@ -23,6 +23,8 @@ l[IHS-1] = 1
 r = True
 
 while(r):
+    # 김지민, 임한수가 나오면 그뒤로 나오는 대진표는 무시하기 위해 1의 갯수를 센다
+    cnt = 0
 
     # 2명 이하로 남았으면 -1로 넣고 나간다
     if len(l) < 2:
@@ -34,21 +36,29 @@ while(r):
 
     # 0, 2, 4, 6 ...
     for i in range(0, len(l), 2):
+
+        # 이미 김지민, 임한수가 나왔으면 나머지 선수대진은 무시한다
+        if cnt >= 2:
+            break
+
         # 마지막 사람 홀수
         if i+1 == len(l):
             newL.append(l[i])
+            cnt += l[i]
         # 인접 체크 하고 맞붙었으면 나간다
         elif l[i] == 1 and l[i+1] == 1:            
-            r = False
+            r = False            
             break
         # 김지민 이나 임한수 둘 중 하나이면 1은 넣는다
         elif l[i] == 1 or l[i+1] == 1:
             newL.append(1)
+            cnt += 1
+        # 둘 다 아닌 다른 선수들
         else:
             newL.append(0)
         
     if r == True:
-        # 맞붙지 않았으면 기존 대진표를 갱신, 라운도 횟수 1 추가
+        # 맞붙지 않았으면 기존 대진표를 갱신, 라운도 횟수 1 추가        
         l = newL
         rnd += 1
 
