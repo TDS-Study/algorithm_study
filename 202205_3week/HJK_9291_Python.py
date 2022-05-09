@@ -59,16 +59,28 @@ for i in range(t):
         print(f'Case {i+1}: INCORRECT')
         #continue
 
-    for j in [0,3,6]:
-        for h in [0,1,2]:
-            for k in [0,1,2]:
-                for l in [0,3,6]:
-                    print("row:",j+h)
-                    print("row" , k+j)
+    rowNum = 0
+    for x in [0,3,6]:
+        for y in [0,3,6]:
+            
+            print("row:",rowNum)
+
+            for x1 in [0,1,2]:
+                for y1 in [0,1,2]:
                     
-                    sql[j+h].append(hl[k+l][k+l])
-                
-                
+                    sql[rowNum].append(hl[x+x1][y+y1])
+                    
+            rowNum += 1
+    
+    for j in sql:
+        if len(set(j)) != 9:
+            result = False
+            break
+        
+    # 열검사 후 결과
+    if result == False:
+        print(f'Case {i+1}: INCORRECT')
+        #continue            
 
 print(sql)
 
