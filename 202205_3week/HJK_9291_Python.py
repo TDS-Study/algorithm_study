@@ -61,8 +61,10 @@ for i in range(t):
 
     for j in [0,3,6]:
         for h in [0,1,2]:
-            for k in [0,3,6]:
-                for l in [0,1,2]:
+            for k in [0,1,2]:
+                for l in [0,3,6]:
+                    print("row:",j+h)
+                    print("row" , k+j)
                     
                     sql[j+h].append(hl[k+l][k+l])
                 
