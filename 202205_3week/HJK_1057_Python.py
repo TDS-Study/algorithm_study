@@ -13,9 +13,16 @@ n, KJM, IHS = map(int, input().split())
 
 # 라운드 수
 rnd = 1
-# 선수 수만큼 0으로 초기화 한다
-l = [0]*n
-# 김지민, 임한수는 1로 표시한다
+# 선수 수만큼 0으로 초기화 한다 (X)
+# 성능개선을 위해 1부터 김지민 또는 임한수 까지만 서브 트리를 만든다 (O)
+
+if KJM > IHS: 
+    newN = KJM
+else:
+    newN = IHS
+
+l = [0]*newN
+# start, end 는 1로 표기
 l[KJM-1] = 1
 l[IHS-1] = 1
 
