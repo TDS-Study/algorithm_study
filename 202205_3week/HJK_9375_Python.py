@@ -11,29 +11,39 @@
 출력
 각 테스트 케이스에 대해 해빈이가 알몸이 아닌 상태로 의상을 입을 수 있는 경우를 출력하시오."""
 
+# 테스트 케이스 갯수
 t = int(input())
+# 결과 저장
+r = []
 
-while(1):
-    if t == 0:
-        break
-
+while(t != 0):
+    # 옷의 수
     n = int(input())
+    # 옷의 부위를 키, 이름들(리스트)을 값으로 가지는 딕셔너리 구성
+    # { "face":["mask", "sunglasses"] }
     dict = {}
 
     for i in range(n):
         name, category = input().split()
-
+        
+        # 부위가 없으면 추가해준다
         if category not in dict.keys():
             dict[category] = [name]
+        # 부위가 있으면 이름만 추가한다
         else:
             dict[category].append(name)
     
+    # 각 부위별 갯수에 안입을경우의 수 1을 더해 옷 종류별로 곱한다
     x = 1
-
     for k, v in dict.items():
-        len(v) + 1
-        
+        x *= (len(v) + 1)
+
+    # 알몸인 경우의수 1을 뺀다
+    x = x - 1
+    r.append(x)    
     
     t -= 1
-print(dict)
+
+print(*r, sep='\n')
+
 
