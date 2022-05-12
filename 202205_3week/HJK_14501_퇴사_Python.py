@@ -31,24 +31,68 @@ Pi	10	20	10	20	15	40	200
 출력
 첫째 줄에 백준이가 얻을 수 있는 최대 이익을 출력한다.
 
-10
-1 1
-1 2
-1 3
-1 4
-1 5
-1 6
-1 7
-1 8
-1 9
+7
+3 10
+5 20
 1 10
-=> 55
+1 20
+2 15
+4 40
+2 200
+=> 45
 """
 # https://www.acmicpc.net/problem/14501
 
+# 1. 불가능한 날짜를 제외한다
+# 2. 일당을 구한다
+# 3. 일당으로 정렬한다
+# 4. 최대일당부터 날짜를 소거한다
+
 n = int(input())
+d = []
+l = []
 
-for i in range(n):
+for i in range(1, n+1):
 	ti, pi = map(int, input().split())
+	di = pi/ti
 
-	
+	# 불가능한 날짜는 ti 와 pi 에 0을 넣는다
+	if ti + i > n + 1:		
+		ti, pi, di = 0, 0, 0
+
+	# [날짜, ti, pi, 일당]
+	a = [i, ti, pi, di]
+
+	if len(d) == 0:
+		d.append(a)
+	else:
+		r = False
+		# 일당으로 정렬해서 넣어줌
+		for j in range(len(d)):
+			# 일당 비교
+			if a[3] > d[j][3]:
+				d.insert(j, a)
+				r = True
+				break
+			# 일당이 같으면 총금액이 큰것이 우선
+			elif a[3] == d[j][3] and a[2] >= d[j][2]:
+				d.insert(j, a)
+				r = True
+				break
+		
+		# 큰게 없으면 제일 마지막에 넣음
+		if r == False:
+			d.insert(len(d), a)
+
+# n 개만큼 방을 만들고 0으로 채움
+l = [0]*n
+
+for i in d:
+	date, ti = i[0], i[1]
+
+	# 정렬된 순서대로 방에 일당을 넣음
+	# 대상 방 전체가 빈 경우 (합계가 0) 만 넣음
+	if sum(l[date-1:date + ti -1]) == 0:
+		l[date-1:date + ti -1] = [i[3]]*ti
+
+print(int(sum(l)))
