@@ -46,5 +46,3 @@ while(t != 0):
     t -= 1
 
 print(*r, sep='\n')
-
-
