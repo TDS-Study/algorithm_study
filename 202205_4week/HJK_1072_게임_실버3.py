@@ -23,12 +23,71 @@ X와 Y가 주어졌을 때, 형택이가 게임을 최소 몇 번 더 해야 Z�
 0 ≤ Y ≤ X
 """
 
-x, y = map(int, input().split())
-s = int(y/x*100)
-remain = y%x
-z = 0
+# 재귀함수로 하니 재귀호출 상한 초과로 실패
+# for 문으로 하니 제한시간 초과로 실패
+# 수학 공식으로풀어야 할듯..
 
-if s == 1:
-    print(-1)
-else:
-    print(remain)
+from decimal import Decimal
+from math import ceil
+
+# x, y = map(int, input().split())
+#s = int(y/x*100)
+
+#print(f"d: {d}")
+
+def cal(y, x):  
+    a = 0        
+
+    # 나머지, 예) 88.234% 라면 r = 0.234
+    r = (y/x*100)%1
+    
+    # d = 1 - r , 예) 88.234% 라면 r = 0.234, d = 0.766
+    d = (1 - r)
+    
+
+    # 1. 이미 100% 인경우
+    # 2. 99% 인경우 절대 100% 에 도달 할 수 없음
+    if x == y or int((y/x)*100) == 99:
+        #print(-1)
+        a = -1
+    else:
+        a = ((x)*d)/(100-d-(y)/(x)*100)
+        a = ceil(a)
+    return a
+
+# a = cal(y,x)
+
+# print(a)
+
+# # 시뮬레이션 부분
+# x = 10000
+
+for i in range(1,1000000):
+    x = Decimal(i)
+    for j in range(i):
+        y = Decimal(j)
+
+        s = int(y/x*100)
+        if s == 99:
+            dap = 99
+        elif y == x:
+            dap == 100
+        else:
+            dap = s + 1
+        
+        a = cal(y, x)
+
+        # print(f"y:{y}, x:{x}, s:{s}, a:{a}")
+        
+        dap2 = 99 if a == -1 else int(Decimal(y+a)/Decimal(x+a)*100)
+        
+        if dap != dap2:
+            if a == 1 and dap2 > dap:
+                print(f"x:{x}, y:{y}, s:{s}, a:{a}")
+                pass
+            else:
+                print(f"dap:{dap}, dap2:{dap2}")
+                print(f"x:{x}, y:{y}, s:{s}, a:{a}")
+    
+    if int(x)%100 == 0: print(f"x:{x}, y:{y}, s:{s}, a:{a}")
+    
