@@ -44,6 +44,7 @@ def bSearch(start, end, minValue):
             return bSearch(middle + 1, end, minValue)
     else:
         # 끝까지 찾아본 후 최소값 출력
+        # 끝까지 가야 최소값을 찾을 수 있다
         return minValue
 
 # # 목표값인 승률 + 1, t:target
