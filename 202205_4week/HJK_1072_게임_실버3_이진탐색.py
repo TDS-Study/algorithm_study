@@ -23,81 +23,36 @@ X와 Y가 주어졌을 때, 형택이가 게임을 최소 몇 번 더 해야 Z�
 0 ≤ Y ≤ X
 """
 
-
 from decimal import Decimal
-from math import ceil
 
 # Decimal 을 사용하여 소수점 정확도 높인다
 x, y = map(Decimal, input().split())
 
-# 목표값인 승률 + 1
-s = y//x*100 + 1
-
-def bSearch(s, e, v):
-    
-    # start 와 end 가 같아지거나 반전되면 찾고자 하는 값이 없다
-    if e >= s:
-        # m:middle
-        m = Decimal((e + s) // 2)
-         
-        # 찾는 수가 가운데 있으면 럭키~
-        if l[m] == v:
-            return m
-        elif l[m] > v:
-            # 가운데 숫자보다 찾는 수가 작은경우 왼쪽 절반을 찾는다
-            return bSearch(l, s, m - 1, v)
+def bSearch(start, end, minValue):
+    global y, x, target
+    # start 와 end 가 같아지거나 반전되면 끝까지 찾아본 것
+    if end >= start:
+        
+        middle = Decimal((start + end) // 2)        
+        answer = (100 * (y + middle)) // (x + middle)
+                
+        # 왼쪽을(작은수) 더 찾는다
+        if target <= answer:
+            return bSearch(start, middle - 1, middle)
         else:
-            # 찾는 수가 가운데 숫자보다 큰 경우 오른쪽 절반을 찾는다
-            return bSearch(l, m + 1, e, v) 
+            # 더 오룬쪽(큰수)를 찾는다
+            return bSearch(middle + 1, end, minValue)
     else:
-        # 찾는 값이 없다
-        return -1
+        # 끝까지 찾아본 후 최소값 출력
+        # 끝까지 가야 최소값을 찾을 수 있다
+        return minValue
 
-def cal(x, y, s):
-    
-    if y == x:
-        return -1
-    elif s == 99:
-        return -1
-    else:
-        a = bSearch(1, x, s)
+# # 목표값인 승률 + 1, t:target
+target = ((100 * y) // x) + 1
+# #print(t)
+a = bSearch(x, y, target)
 
-print(a)
-
-# # 시뮬레이션 부분
-# x = 10000
-
-# for i in range(1,1000000):
-#     x = Decimal(i)
-#     for j in range(i):
-#         y = Decimal(j)
-
-#         s = int(y/x*100)
-#         if s == 99:
-#             dap = 99
-#         elif y == x:
-#             dap == 100
-#         else:
-#             dap = s + 1
-        
-#         a = cal(y, x)
-
-#         # print(f"y:{y}, x:{x}, s:{s}, a:{a}")
-        
-#         dap2 = 99 if a == -1 else int(Decimal(y+a)/Decimal(x+a)*100)
-        
-#         if dap != dap2:
-#             if a == 1 and dap2 > dap:
-#                 #print(f"x:{x}, y:{y}, s:{s}, a:{a}")
-#                 pass
-#             else:
-#                 print(f"dap:{dap}, dap2:{dap2}")
-#                 print(f"x:{x}, y:{y}, s:{s}, a:{a}")
-#         else:
-#             dap3 = int(Decimal(y+a-1)/Decimal(x+a-1)*100)
-
-#             if dap == dap3 and a != -1:
-#                 print("!!!",f"x:{x}, y:{y}, s:{s}, a:{a}")
-    
-#     if int(x)%1000 == 0: print(f"x:{x}, y:{y}, s:{s}, a:{a}")
-    
+if y == x or target == 100:
+    print(-1)
+else:
+    print(bSearch(1, x, x))
