@@ -15,7 +15,7 @@
 
 #### 분수 찾기 (브론즈1)
 
-+ https://www.acmicpc.net/problem/1292
++ https://www.acmicpc.net/problem/1193
 
 
 ### 결과
