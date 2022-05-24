@@ -17,6 +17,9 @@
 
 + https://www.acmicpc.net/problem/1193
 
+#### 예산 (실버3)
+
++ https://www.acmicpc.net/problem/2512
 
 ### 결과
 
