@@ -17,6 +17,9 @@
 
 + https://www.acmicpc.net/problem/1193
 
+#### 예산 (실버3)
+
++ https://www.acmicpc.net/problem/2512
 
 ### 결과
 
@@ -24,8 +27,10 @@
 
 ### 배운점
 
++ 
+
 ### 팔로업 항목
-+ 없음
+> 현주: 굴다리문제 이진탐색으로 어떻게 풀 수 있는 지 확인 필요
 
 ### 참조
 + 백준에서 티어 표시되도록 설정하기: https://velog.io/@byeonyh95/%EB%B0%B1%EC%A4%80%EC%97%90%EC%84%9C-solved-%ED%8B%B0%EC%96%B4-%EB%B3%B4%EB%8A%94-%EA%BF%80%ED%8C%81
