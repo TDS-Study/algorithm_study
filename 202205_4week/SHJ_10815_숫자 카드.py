@@ -46,22 +46,19 @@ def main_func(n, nList, mList):
     result = result[1:]  # 첫 공백 제거
     print(result)
 
-
-
 def binary_search(arr, value):
-    first, last = 0, len(arr)-1
+    first, last = 0, len(arr)-1     # mid = last로 가는 경우도 있으니 last는 길이-1로 설정
     while first <= last:
         mid = (first + last) // 2
         if arr[mid] == value:
             # return mid
             return " 1"
-        if arr[mid] > value:
+        if arr[mid] > value:        # 왼쪽 범위 탐색 (작은 값)
             last = mid - 1
-        else:
+        else:                       # 오른쪽 범위 탐색 (큰 값)
             first = mid + 1
     return " 0"
     
-
 def main(n, nList, mList):
     result = ""
     nList.sort()
@@ -70,7 +67,6 @@ def main(n, nList, mList):
         result = result + binary_search(nList, _m)
 
     result = result[1:]
-
     print(result)
 
 
