@@ -35,18 +35,18 @@ def get_result(n:int, m:int, l:list):
         return max(l)
 
     s = 0
-    e = max(l)
+    e = min(max(l), m)
     while s <= e:
         mid = (s+e)//2
         total = 0
-        for v in l: # for문 돌면서 mid보다 크면 mid만, 그 외에는 요청 예상만큼 더함
+        for v in l: # for문 돌면서 mid보다 크면 mid만, 그 외에는 요청 예산만큼 더함
             if v <= mid:
                 total += v
             else:
                 total += mid
 
         if total <= m:      # '='를 추가하니 맞았는데 왜 맞는지 모르겠음
-            answer = mid    # 이거도 왜 들어가는지
+            answer = mid    # 성공했던 결과 값을 반영하도록 저장
             s = mid+1
         else:         
             e = mid-1
