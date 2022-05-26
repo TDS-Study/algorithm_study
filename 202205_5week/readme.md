@@ -10,16 +10,11 @@
 아래 알고리즘 문제에 대해 코드를 작성하고 코드 리뷰를 진행한다.
 
 #### 어두운 굴다리 (실버4)
-
-+ https://www.acmicpc.net/problem/17266
-
-#### 분수 찾기 (브론즈1)
-
-+ https://www.acmicpc.net/problem/1193
-
-#### 예산 (실버3)
-
-+ https://www.acmicpc.net/problem/2512
+| 문제명 | 난이도 | 주소 |
+| :---:  | :--- | :--- |
+| 분수 찾기 | 브론즈1 | https://www.acmicpc.net/problem/1193 |
+| 어두운 굴다리 | 실버4 | https://www.acmicpc.net/problem/17266 |
+| 예산 | 실버3 | https://www.acmicpc.net/problem/2512 |
 
 ### 배운점
 + [이호석] 다음번에는 알고리즘을 이용하여 문제를 풀어보려함.
