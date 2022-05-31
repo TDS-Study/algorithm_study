@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a[] = {500, 100, 50, 10, 5, 1};
+    int b, c;
+    int cnt = 0;
+    
+    cin >> b;
+    c = 1000 - b;
+    
+    for(int i = 0; i < 6; i++){
+        while(c >= a[i]){
+            if(c >= a[i]){
+                c -= a[i];    
+                cnt++;    
+            }
+            else{
+                break;
+            }
+                
+        }
+    }
+    
+    cout << cnt;
+    return 0;
+}
