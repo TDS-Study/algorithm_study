@@ -23,69 +23,56 @@ C개의 공유기를 N개의 집에 적당히 설치해서, 가장 인접한 두
 # -> 가장 작은 거리는 각 집간 거리 중 최소값
 # 공유기가 2개만 있다고 가정하면 가장 첫집, 끝집에 놓으면 최대거리
 
+nHouse, nWifi = map(int, input().split())
+lHouse = []
 
-import random
-
-
-# nHouse, nWifi = map(int, input().split())
-# nHouse, nWifi = 5, 3
-# lHouse = []
-
-# for i in range(nHouse):
-    # lHouse.append(int(input()))
-# lHouse.append(1)
-# lHouse.append(2)
-# lHouse.append(8)
-# lHouse.append(4)
-# lHouse.append(9)
-
-
-
-# print(lHouse)
-
-# print(begin)
-# print(end)
+for i in range(nHouse):
+    lHouse.append(int(input()))
 
 def check(m, lHouse, nWifi):
-    offset = lHouse[0]
+    # 첫번째 집 위치
+    prevLoc = lHouse[0]
     nW = nWifi - 1 # 첫번째 것  제외
-    # 1, 2 4 8 9
+    
+    # 집 위치사이의 거리가 m 보다 크면 통과
     for i in lHouse:
-        if (i - offset) >= m:
-            # print(f"passM:{m}")
+        if (i - prevLoc) >= m:
             nW -= 1
-            offset = i            
+            prevLoc = i            
         
         if nW == 0:
-            # print(f"pass:{i}, nW:{nW}")
+            # 모든 공유기를 m 이상 거리를 두고 놓았다면 패스
             return True
     
     return False
 
 def main(nHouse = int, nWifi = int, lHouse = []):
-    answer = int
+    answer = 1
 
-    # 이분검색하기위해 정렬한다
+    # 집 위치로 정렬한다
     lHouse.sort()
-    print(lHouse)
-    begin = 1; end = lHouse[len(lHouse)-1] - lHouse[0]
 
-    while(begin <= end):
+    # 편의상 최소 집사이 거리는 1로 생각한다
+    begin = 1
+    # 끝집 - 첫집 거리만큼 이 최대거리이다 (공유기 2개만 놓을경우 최대거리)
+    end = lHouse[len(lHouse)-1] - lHouse[0]
+    # 최소 거리1 부터 최대거리 까지 가능한지 아닌지 체크해 나간다
+    
+    # 가능한거리가 100억이므로 2분탐색을 사용하여 탐색을 줄인다
+    while(begin <= end):        
         m = (begin + end)//2
 
-        # print(f"begin:{begin}, end:{end}, m:{m}")
-
         if check(m, lHouse, nWifi) == False:        
+            # m 거리로 공유기를 놓지 못했다면 m 보다 작은수 절만을 검색한다
             end = m - 1
         else:
+            # m 거리로 공유기를 전부 놓을 수 있다면 더 큰 거리 절반을 검색한다            
             begin = m + 1
+            # 공유기를 놓을 수 있었던 m은 기억해둔다. (이후 조건이 만족하지 않은 채 탐색이 끝날 수도 있음)
             answer = m
     
     return answer
 
-
-n , w = 100, 3
-
-a = main(n, w, random.sample(range(0, 100), n))
+a = main(nHouse, nWifi, lHouse)
 
 print(a)
