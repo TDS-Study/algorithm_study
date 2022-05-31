@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class HJK_2110_공유기문제_골드5 {
+public class HJK_2110_공유기설치_골드5 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
