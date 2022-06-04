@@ -46,7 +46,7 @@ def rule1(card1 = [], card2 = []):
         return False
 
 def rule2(prevCards = [], cards = []):
-    # 두 덱의 
+    # 이전 덱과 합하여 유일한 숫자가 9개 이상 있으면 통과
     if len(prevCards) == 0:
         print("no prev cards")
         return True
