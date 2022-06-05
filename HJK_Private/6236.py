@@ -12,29 +12,38 @@ Lines 2..N+1: Line i+1 contains the number of dollars Farmer John spends on the 
 Line 1: The smallest possible monthly limit Farmer John can afford to live with.
 """
 
+import sys
+
 nDays, mFjs = int(), int()
 nSpend = []
 
 def getInput():
     global nDays, mFjs, nSpend    
     nDays, mFjs = map(int, input().split())
+    # 배열을 미리 초기화 하여 속도 올림
+    nSpend = [0 for _ in range(nDays)]
 
+    # 입력 시 sys.stdin.readline 사용하여 속도업
     for i in range(nDays):
-        nSpend.append(int(input()))
+        nSpend[i] = int(sys.stdin.readline())
 
 def check(middle: int) -> bool:
     global nSpend
     sum = 0
     cnt = 1
 
+    # 날짜별 사용 금액을 middle 을 넘지 않도록 묶을 수 있는지 확인
     for i in nSpend:
         if (sum + i) <= middle:
             sum += i
         else:
             sum = i
             cnt += 1
+        # 총 날짜가 기준 날짜를 넘어가면 안됨
+        if cnt > mFjs:
+            return False
 
-    return False
+    return True
 
 # 입력 처리
 getInput()
@@ -53,4 +62,3 @@ while(begin <= end):
         begin = middle + 1
 
 print(minValue)
-
