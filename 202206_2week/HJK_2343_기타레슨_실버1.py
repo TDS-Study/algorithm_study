@@ -23,12 +23,7 @@ def check(middle : int) -> bool:
     sum = 0
     cnt = 1
 
-    for i in aLectures:
-        # middle 보다 강의영상1개 크기가 크면 안된다
-        # 강의 1개를 나누어 담을 수 없다
-        if i > middle:
-            return False
-
+    for i in aLectures:       
         # 강의를 middle 을 넘기지 않는 상태로 디스크(sum)에 담는다
         if (sum + i) <= middle:
             sum += i
@@ -45,7 +40,7 @@ def check(middle : int) -> bool:
     return True        
 
 # 매개변수 탐색
-begin, end = 1, sum(aLectures)
+begin, end = max(aLectures), sum(aLectures)
 minValue = min(aLectures)
 
 while(begin <= end):
