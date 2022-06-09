@@ -20,21 +20,34 @@ M명의 조카가 있고 N개의 과자가 있을 때, 조카 1명에게 줄 수
 단, 모든 조카에게 같은 길이의 막대과자를 나눠줄 수 없다면, 0을 출력한다.
 
 https://www.acmicpc.net/problem/16401
+
+3 10
+1 2 3 4 5 6 7 8 9 10
+
+8
 """
 
+import sys
+
+
 nOfNiblings, nOfCandies = map(int, input().split())
-candies = list(map(int, input().split()))
+candies = list(map(int, sys.stdin.readline().split()))
 candies.sort()
 
 def check(mid: int) -> bool:
     result = False
+    cnt = 0;
 
+    for i in candies:
+        cnt += i // mid
+
+        if cnt >= nOfNiblings:
+            result = True
+            break
     
-
-
     return result
 
-begin, end = min(candies), max(candies)
+begin, end = 1, max(candies)
 mid = 0
 maxValue = 0
 
