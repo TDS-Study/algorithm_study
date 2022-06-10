@@ -26,28 +26,24 @@ https://www.acmicpc.net/problem/16401
 
 8
 """
-
 import sys
 
-
-nOfNiblings, nOfCandies = map(int, input().split())
+nOfNiblings, nOfCandies = map(int, sys.stdin.readline().split())
 candies = list(map(int, sys.stdin.readline().split()))
-candies.sort()
 
 def check(mid: int) -> bool:
-    result = False
-    cnt = 0;
+    if mid == 0:
+        return False
 
-    for i in candies:
-        cnt += i // mid
+    cnt = sum([_ // mid for _ in candies])
 
-        if cnt >= nOfNiblings:
-            result = True
-            break
-    
-    return result
+    # mid 크기의 과자 조각이 조카 수 보 많거나 같으면 성공
+    if cnt >= nOfNiblings:
+        return True
+    else:
+        return False    
 
-begin, end = 1, max(candies)
+begin, end = min(candies) // nOfNiblings, max(candies)
 mid = 0
 maxValue = 0
 
