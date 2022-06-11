@@ -26,12 +26,13 @@ https://www.acmicpc.net/problem/16401
 
 8
 """
+import random
 import sys
 
-nOfNiblings, nOfCandies = map(int, sys.stdin.readline().split())
-candies = list(map(int, sys.stdin.readline().split()))
+# nOfNiblings, nOfCandies = map(int, sys.stdin.readline().split())
+# candies = list(map(int, sys.stdin.readline().split()))
 
-def check(mid: int) -> bool:
+def check(mid: int, candies:list, nOfNiblings:int) -> bool:
     if mid == 0:
         return False
 
@@ -41,19 +42,41 @@ def check(mid: int) -> bool:
     if cnt >= nOfNiblings:
         return True
     else:
-        return False    
+        return False
 
-begin, end = min(candies) // nOfNiblings, max(candies)
-mid = 0
-maxValue = 0
+def cal(nOfNiblings:int, nOfCandies:int, candies:list) -> str:
+    begin, end = min(candies) // nOfNiblings, max(candies)    
+    mid = 0
+    maxValue = 0
 
-while(begin <= end):
-    mid = (begin + end) // 2
+    while(begin <= end):
+        mid = (begin + end) // 2
 
-    if(check(mid)):
-        begin = mid + 1
-        maxValue = mid
-    else:
-        end = mid - 1
+        if mid == 0:
+            print(f"begin: {begin}, end: {end}")
+            print(f"n: {nOfNiblings}, c: {nOfCandies}")
+            print(candies)
+            return 0
 
-print(maxValue)
+        if(check(mid, candies, nOfNiblings)):
+            begin = mid + 1
+            maxValue = mid
+        else:
+            end = mid - 1
+    
+    return maxValue    
+
+maxValue = 1
+while maxValue != 0:
+    n = random.randint(1,100)
+    m = random.randint(1,100)
+    l = random.sample([_ for _ in range(1000)],m)
+
+    # n, m = 3, 10
+    # l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    # print(f"n:{n}, m:{m}, l:{l}")
+
+    maxValue = cal(n, m, l)
+
+    print(maxValue)
