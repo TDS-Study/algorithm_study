@@ -58,14 +58,17 @@ final_balance = []
 for i in stack_balance:
     
     sum = 0
+    # 스택이 빌 때 까지 스택에서 꺼낸다
     while(i):
         dic = i.pop()
 
+        # 부정 재화의 경우 거른다
         if dic["user"] in abnormal:
             pass
         else:
+        # 정상 재화일 경우 합산
             sum += dic["amount"]
-    
+    # 정상재화 합산을 리스트에 넣는다
     final_balance.append(sum)
 
 print(final_balance)
