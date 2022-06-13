@@ -1,3 +1,6 @@
+# 알고리즘 설명 파워포인트
+# https://1drv.ms/p/s!AmCzGXsvCrjVhK0a5ri44VV8RVWGsw?e=lY2lVO
+
 from collections import deque
 
 balance = [100, 1, 1, 1, 1]
