@@ -20,5 +20,9 @@
 + 없음
 
 ### 참조
-> 이분탐색 및 매개변수탐색 괜찮은 유튜브: 
+> + 이분탐색 및 매개변수탐색 괜찮은 유튜브: 
 > https://youtu.be/F6lKjRDlOpk?t=385
+> + 과자나누기 알고리즘 슬라이드
+> https://1drv.ms/p/s!AmCzGXsvCrjVhK0cZtIZ9h_LRmOghA?e=mTearN
+> + 부정재화 제거 알고리즘 슬라이드
+> https://1drv.ms/p/s!AmCzGXsvCrjVhK0a5ri44VV8RVWGsw?e=lY2lVO
