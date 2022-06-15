@@ -14,7 +14,10 @@
 | 과자 나눠주기 | 실버2 | https://www.acmicpc.net/problem/16401 |
 
 ### 배운점
-+
++ 조카를 영어로 Nibling 이라 한다.
++ 엑셀에 숫자를 한글로 변환해주는 NumberString 함수가 있다! 
+> + https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=vertigo77&logNo=220748263368
++ 이분탐색, 매개변수 탐색에 대해 이해하고 주어진 문제를 풀 수 있었다.
  
 ### 팔로업 항목
 + 없음
