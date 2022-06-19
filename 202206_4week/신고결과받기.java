@@ -1,6 +1,8 @@
 
 import java.util.*;
 
+// https://programmers.co.kr/learn/courses/30/lessons/92334
+
 public class 신고결과받기 {
     public static void main(String[] args) {
         String[] id_list = { "muzi", "frodo", "apeach", "neo" };
