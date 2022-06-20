@@ -1,5 +1,8 @@
 
 import java.util.*;
+import java.util.Map.Entry;
+
+// https://programmers.co.kr/learn/courses/30/lessons/92334
 
 public class 신고결과받기 {
     public static void main(String[] args) {
@@ -33,9 +36,9 @@ class Solution {
         }
         
         // 신고 받은 사람 신고수가 k를 넘을 때 신고 한 사람 카운트 증가
-        for(Map.Entry e : ds.entrySet()) {
-            String name = (String)e.getKey();
-            Set s = (HashSet)e.getValue();
+        for(Entry<String, Set<String>> e : ds.entrySet()) {
+            
+            Set<String> s = (HashSet<String>)e.getValue();
             Iterator<String> it = s.iterator();
             
             if (s.size() >= k) {
