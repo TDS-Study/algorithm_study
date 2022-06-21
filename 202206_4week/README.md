@@ -13,9 +13,11 @@
 | :---:  | :--- | :--- |
 | 신고 결과 받기 | 레벨1 | https://programmers.co.kr/learn/courses/30/lessons/92334 |
 | 숫자문자열과 영단어 | 레벨1 | https://programmers.co.kr/learn/courses/30/lessons/81301 |
+| 기능개발 | 레벨2 | https://programmers.co.kr/learn/courses/30/lessons/42586 |
 
 ### 배운점
-+ 
++ 각 프로그래밍 언어마다 수행 속도가 매우 다르다
++ 프로그래밍 언어의 특성(속도, 편의성 등)에 맞추어 사용하여 장점을 극대화 가능
  
 ### 팔로업 항목
 + 없음
