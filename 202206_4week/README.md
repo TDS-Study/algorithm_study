@@ -20,7 +20,7 @@
 + 프로그래밍 언어의 특성(속도, 편의성 등)에 맞추어 사용하여 장점을 극대화 가능
  
 ### 팔로업 항목
-+ 없음
++ 현주: Python zip 공부하기
 
 ### 참조
 > https://blockdmask.tistory.com/70 C++ Vector 정리 및 사용법
