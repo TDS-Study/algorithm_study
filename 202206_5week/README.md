@@ -13,12 +13,14 @@
 | :---:  | :--- | :--- |
 | 키패드 누르기 | 레벨1 | https://programmers.co.kr/learn/courses/30/lessons/67256 |
 | NHN 3번 | N/A | 링크없음 |
+| 바이러스 | 실버3 | https://www.acmicpc.net/problem/2606 |
 
 ### 배운점
++ 깊이우선탐색(DFS), 너비우선탐색(BFS) 의 기본 개념에 대해 배웠음
 + 
  
 ### 팔로업 항목
-+ 
++ 두 탐색법에 대해 추가 문제를 풀어 보기
 
 ### 참조
-> 
+> 두 탐색법에 대한 설명: https://velog.io/@lucky-korma/DFS-BFS%EC%9D%98-%EC%84%A4%EB%AA%85-%EC%B0%A8%EC%9D%B4%EC%A0%90
