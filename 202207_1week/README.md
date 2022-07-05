@@ -12,6 +12,7 @@
 | 문제명 | 난이도 | 주소 |
 | :---:  | :--- | :--- |
 | 타겟넘버 | 레벨2 | https://programmers.co.kr/learn/courses/30/lessons/43165 |
+| 네트워크 | 레벨3 | https://school.programmers.co.kr/learn/courses/30/lessons/43162 |
 
 ### 배운점
 + 
