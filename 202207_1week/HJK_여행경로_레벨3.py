@@ -22,7 +22,7 @@ def dfs(graph, start, visited, end_count):
             return visited
         else:
             return None
-
+    
     next_city = graph[start].pop(0)
     visited.append(next_city)
     
