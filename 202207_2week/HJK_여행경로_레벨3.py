@@ -48,6 +48,7 @@ def solution(tickets):
             graph[tickets[i][1]] = []
         
         # 표가 중복될 수 도 있을것 같아 순번 i 도 각 노드에 추가함
+        # 예) ICN-SFO 가 두 장
         l = [i]
         l.extend(tickets[i])
         graph[tickets[i][0]].append(l)
