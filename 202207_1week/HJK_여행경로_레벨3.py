@@ -16,41 +16,52 @@ tickets의 각 행 [a, b]는 a 공항에서 b 공항으로 가는 항공권이 �
 
 def dfs(graph, start, visited, end_count):
     
-    # 더 갈곳이 없다
-    if start not in graph.keys() or len(graph[start]) == 0:
-        if len(visited) == end_count:
-            return visited
-        else:
-            return None
-    
-    next_city = graph[start].pop(0)
-    visited.append(next_city)
-    
-    return dfs(graph, next_city, visited, end_count)
+    for i in graph[start]:
+        # 안쓴 티켓 이라면 쓴다
+        if i not in visited:
+            visited.append(i)
+            next_city = i[2]
+            v = dfs(graph, next_city, visited.copy(), end_count)
+
+            if v != None:
+                return v
+
+    # 티켓을 다썼다
+    if len(visited) == end_count:
+        return visited
+    else:
+        return None
 
 def solution(tickets):
     answer = []
+    visited = []
     graph = {}
     
     # 출발도시, 도착도시로 된 딕셔너리 생성
-    # 일방통행 이므로 도착도사, 출발도시는 생성 안함
-    # 표를 다 써야하므로 중복 허용, set 쓰면 안됨
+    # 일방통행 이므로 도착도시, 출발도시 역순은 생성 안함
     for i in range(len(tickets)):
+        # 출발 지를 딕셔너리 키에 추가
         if tickets[i][0] not in graph:
             graph[tickets[i][0]] = []
-
-        graph[tickets[i][0]].append(tickets[i][1])
+        # 도착 지를 딕셔너리 키에 추가
+        if tickets[i][1] not in graph:
+            graph[tickets[i][1]] = []
+        l = [i]
+        l.extend(tickets[i])
+        graph[tickets[i][0]].append(l)
         
     for i in graph.values():
-        i.sort()
+        i.sort(key= lambda x: x[2])
 
-    answer.append("ICN")
-    answer = dfs(graph, "ICN", answer, len(tickets)+1)
+    visited = dfs(graph, "ICN", answer, len(tickets))
+
+    answer = [_[2] for _ in visited]
+    answer.insert(0, "ICN")
 
     return answer
 
 tickets = [["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL","SFO"]]
-tickets = [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
+# tickets = [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
 
 if __name__ == "__main__":
 
