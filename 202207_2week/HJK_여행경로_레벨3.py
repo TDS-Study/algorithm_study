@@ -12,16 +12,16 @@ tickets의 각 행 [a, b]는 a 공항에서 b 공항으로 가는 항공권이 �
 모든 도시를 방문할 수 없는 경우는 주어지지 않습니다."""
 # https://school.programmers.co.kr/learn/courses/30/lessons/43164
 
-
-
 def dfs(graph, start, visited, end_count):
-    
+
     for i in graph[start]:
         # 안쓴 티켓 이라면 쓴다
         if i not in visited:
-            visited.append(i)
             next_city = i[2]
-            v = dfs(graph, next_city, visited.copy(), end_count)
+            # 참조하지 못하도록 copy 해서 새 list 생성
+            new_visited = visited.copy()
+            new_visited.append(i)
+            v = dfs(graph, next_city, new_visited, end_count)
 
             if v != None:
                 return v
@@ -46,22 +46,28 @@ def solution(tickets):
         # 도착 지를 딕셔너리 키에 추가
         if tickets[i][1] not in graph:
             graph[tickets[i][1]] = []
+        
+        # 표가 중복될 수 도 있을것 같아 순번 i 도 각 노드에 추가함
         l = [i]
         l.extend(tickets[i])
         graph[tickets[i][0]].append(l)
-        
+    
+    # 각 노드가 가지고 있는 두번 째 (도착지) 기준으로 정렬
     for i in graph.values():
         i.sort(key= lambda x: x[2])
 
     visited = dfs(graph, "ICN", answer, len(tickets))
 
+    # 도착지 공항을 answer에 추가하고 가장 앞에 ICN 추가
     answer = [_[2] for _ in visited]
     answer.insert(0, "ICN")
 
     return answer
 
 tickets = [["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL","SFO"]]
-# tickets = [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
+tickets = [["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL","SFO"],['SFO','ICN'],['ICN','SFO']]
+tickets = [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
+tickets = [['ICN','SFO'], ['ICN','XAB'], ['XAB','ICN']]
 
 if __name__ == "__main__":
 
