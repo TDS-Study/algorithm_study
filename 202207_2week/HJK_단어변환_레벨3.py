@@ -16,18 +16,7 @@ begin과 target은 같지 않습니다.
 # https://school.programmers.co.kr/learn/courses/30/lessons/43163
 
 # start 부터 target 까지 그래프로 연결가능하면 경로의 길이를 반환한다
-# 최소 경로가 필요하므로 bfs 를 사용한다
 
-# 두 단어가 하나의 차이만 있는지 확인한다
-def is_one_diff(word1, word2):
-    count = 0
-    for i in range(len(word1)):
-        if word1[i] != word2[i]:
-            count += 1
-        if count > 1:
-            return False
-    
-    return True
 
 def bfs(l, begin, target):
     queue = [begin]
@@ -46,12 +35,47 @@ def bfs(l, begin, target):
         
     return False
 
+# 두 단어가 하나의 차이만 있는지 확인한다
+def is_one_diff(word1, word2):
+    count = 0
+    for i in range(len(word1)):
+        if word1[i] != word2[i]:
+            count += 1
+        if count > 1:
+            return False
+    return True
+
+def dfs(l, start, target, visited, min_visited):
+    # 경로에 노드 추가
+    visited.append(start)
+
+    # 도착했으면 경로를 반환한다
+    if start == target:
+        return visited
+    
+    # 도착하지 않은 경우 자식 노드를 방문한다
+    for i in l[start]:
+        # 이미 방문한 노드는 가지 않는다
+        if i not in visited:
+            # 자식노드에서 타겟까지 간 경우 비어있지 않은 경로를 반환한다
+            v = dfs(l, i, target, visited.copy(), [])
+
+            # 타겟까지 못간경우는 무시하고 다음 자식노드를 탐색
+            if v == []:
+                continue
+            
+            # 자식들의 경로 중 짧은 것만 min_visited에 보관한다
+            if min_visited == [] or len(v) < len(min_visited):
+                min_visited = v
+
+    # 자식노드 탐색 결과가 있으면 반환한다
+    if min_visited != []:
+        return min_visited
+
+    return []
 def solution(begin, target, words):
     answer = 0
-    
-    # 타겟도 words 에 넣어준다
-    words.append(target)
-    
+        
     # 그래프를 저장 할 딕셔너리
     l = {}
     l[begin] = []
@@ -75,10 +99,13 @@ def solution(begin, target, words):
                 if i not in l[i]:
                     l[i].append(word)
     
-    # 그래프를 bfs로 탐색한다
-    bfs(l, begin, target)    
+    # 그래프를 dfs로 탐색한다
+    # bfs(l, begin, target)
+
+    # dfs 로 탐색한다
+    visited = dfs(l, begin, target, [], [])
     
-    return answer
+    return 0 if visited == [] else len(visited)-1
 
 
 if __name__ == '__main__':
@@ -86,4 +113,5 @@ if __name__ == '__main__':
     begin = "hit"
     target = "cog"
     words = ["hot", "dot", "dog", "lot", "log", "cog"]
+    words = ["hot", "dot", "dog", "lot", "log"]
     print(solution(begin, target, words))

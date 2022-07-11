@@ -71,5 +71,4 @@ tickets = [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
 tickets = [['ICN','SFO'], ['ICN','XAB'], ['XAB','ICN']]
 
 if __name__ == "__main__":
-
     print(solution(tickets))
