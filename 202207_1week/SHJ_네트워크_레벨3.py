@@ -11,7 +11,8 @@ def bfs(graph, visit,root):
                     if n1 in visit:
                         continue
                     queue.append(n1)
-    
+
+
 def solution(n, computers):
     answer = 0
     graph = {}
