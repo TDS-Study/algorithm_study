@@ -13,7 +13,7 @@
 | :---:  | :--- | :--- |
 | 단어변환 | 레벨3 | https://school.programmers.co.kr/learn/courses/30/lessons/43163 |
 | 여행경로 | 레벨3 | https://school.programmers.co.kr/learn/courses/30/lessons/43164 |
-
+| 안전영역 | 실버1 | https://www.acmicpc.net/problem/2468 |
 
 ### 배운점
 + 
