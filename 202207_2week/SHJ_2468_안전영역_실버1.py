@@ -3,6 +3,7 @@
 '''
 
 from collections import deque
+import sys
 
 class Zone:
     x = int()
@@ -13,77 +14,73 @@ class Zone:
         self.x = x
         self.y = y
 
-def bfs(x, y, n, h, visit):
-    existSafetyZone = False
+class Coordi:
+    x = int()
+    y = int()
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def bfs(coordi):
+    safetyZones = 0
     
-    queue = deque([Zone(altitude[x][y], x, y)])
-    # 방문 했음
-    
-    while queue:
-        cur =  queue.popleft()
-        visit[cur.x][cur.y] = True
-        # 세이프티 존 있음
-        if cur.al > h:
-            existSafetyZone = True
-        
+    while coordi:
+        safetyZones += 1
+        queue = deque([coordi.pop(0)])
+        while queue:
+            cur =  queue.popleft()
+            
             # 상
-            if cur.y-1 >= 0 and visit[cur.x][cur.y-1] == False:
-                queue.append(Zone(altitude[cur.x][cur.y-1], cur.x, cur.y-1))
-                # visit[cur.x][cur.y-1] = True
+            if [cur[0], cur[1]-1] in coordi:
+                coordi.remove([cur[0], cur[1]-1])
+                queue.append([cur[0], cur[1]-1])
             # 하
-            if cur.y+1 < n and visit[cur.x][cur.y+1] == False:
-                queue.append(Zone(altitude[cur.x][cur.y+1], cur.x, cur.y+1))
-                # altitude[cur.x][cur.y+1] = True
+            if [cur[0], cur[1]+1] in coordi:
+                coordi.remove([cur[0], cur[1]+1])
+                queue.append([cur[0], cur[1]+1])
             # 좌
-            if cur.x-1 >= 0 and visit[cur.x-1][cur.y] == False:
-                queue.append(Zone(altitude[cur.x-1][cur.y], cur.x-1, cur.y))
-                # altitude[cur.x-1][cur.y] = True
+            if [cur[0]-1, cur[1]] in coordi:
+                coordi.remove([cur[0]-1, cur[1]])
+                queue.append([cur[0]-1, cur[1]])
             # 우
-            if cur.x+1 < n and visit[cur.x+1][cur.y] == False:
-                queue.append(Zone(altitude[cur.x+1][cur.y], cur.x+1, cur.y))
-                # altitude[cur.x+1][cur.y] = True
+            if [cur[0]+1, cur[1]] in coordi:
+                coordi.remove([cur[0]+1, cur[1]])
+                queue.append([cur[0]+1, cur[1]])
         
-    return existSafetyZone    # words 리스트에 target은 있으나 변환할 수 없는 경우
+    return safetyZones    # words 리스트에 target은 있으나 변환할 수 없는 경우
 
 def countSafetyZone(n, h):
-    visit = [[False for i in range(n)] for j in range(n)]
-    safetyZone = 0
+    coordi = []
     for x in range(n):
         for y in range(n):
-            if visit[x][y] == True:
-                continue
-            if altitude[x][y] <= h:
-                visit[x][y] = True
-                continue
+             if altitude[y][x] > h:
+                coordi.append([x,y])  # 좌표 리스트로 가야지
 
-            existSafetyZone = bfs( x, y,n, h, visit)
-            if existSafetyZone == True:
-                safetyZone += 1
-    return safetyZone
+    safetyZones = bfs(coordi)
+    return safetyZones
 
 def solution(n, min, max):
     answer = 0
-    
     for h in range(min,max+1):
-        safetyZone = countSafetyZone(n, h)
-        if answer < safetyZone:
-            answer = safetyZone
+        safetyZones = countSafetyZone(n, h)
+        if answer < safetyZones:
+            answer = safetyZones
     print(answer)
 
-n = int(input())
-altitude = []
-max_v = 1
-min_v = 100
-for i in range(n):
-    row = list(map(int, input().split()))
-    # row = list(map(int, sys.stdin.readline().split()))
+# n = int(input())
+# altitude = []
+# max_v = 1
+# min_v = 100
+# for i in range(n):
+#     # row = list(map(int, input().split()))
+#     row = list(map(int, sys.stdin.readline().split()))
     
-    # bfs 실행할 범위 찾기
-    if(max_v < max(row)):
-        max_v = max(row)
-    if(min_v > min(row)):
-        min_v = min(row)
-    altitude.append(row)
+#     # bfs 실행할 범위 찾기
+#     if(max_v < max(row)):
+#         max_v = max(row)
+#     if(min_v > min(row)):
+#         min_v = min(row)
+#     altitude.append(row)
 
 n = 5
 altitude = []
