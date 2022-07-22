@@ -10,8 +10,6 @@ namespace Test
     {
         public int solution(int n, int[] lost, int[] reserve)
         {
-            List<int> tmpList = new List<int>();
-
             // 분실자 중에서 여유분을 가지고 있던 학생은 
             // 분실자와 여유분 소지자 배열에서 학번 삭제
             List<int> lostList = lost.Except(reserve).ToList();
