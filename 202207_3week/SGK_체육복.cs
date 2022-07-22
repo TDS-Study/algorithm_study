@@ -27,20 +27,16 @@ namespace Test
             // 여유분 중 빌릴 수 있는지 체크
             foreach (int num in lostList)
             {
-                int idx = reserveList.FindIndex(v => v == num - 1);
-
-                if (idx > -1)
+                if(reserveList.Contains(num - 1) == true)
                 {
-                    reserveList.RemoveAt(idx);
+                    reserveList.Remove(num - 1);
                     attend++;
                     continue;
                 }
 
-                idx = reserveList.FindIndex(v => v == num + 1);
-
-                if (idx > -1)
+                if(reserveList.Contains(num + 1) == true)
                 {
-                    reserveList.RemoveAt(idx);
+                    reserveList.Remove(num + 1);
                     attend++;
                 }
             }
