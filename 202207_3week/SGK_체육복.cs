@@ -11,25 +11,12 @@ namespace Test
         public int solution(int n, int[] lost, int[] reserve)
         {
             List<int> tmpList = new List<int>();
-            List<int> lostList = lost.ToList();
-            List<int> reserveList = reserve.ToList();
 
-            // 체육복을 잃어 버렸는데 여유분을 가지고 있는 학생은 제외
-            lostList.ForEach(v =>
-            {
-                if (reserveList.Contains(v) == true)
-                {
-                    tmpList.Add(v);
-                    reserveList.Remove(v);
-                }
-            });
-
-            // 분실자에서 여유분을 가지고 있던 학생을 제외
-            tmpList.ForEach(v =>
-            {
-                lostList.Remove(v);
-            });
-
+            // 분실자 중에서 여유분을 가지고 있던 학생은 
+            // 분실자와 여유분 소지자 배열에서 학번 삭제
+            List<int> lostList = lost.Except(reserve).ToList();
+            List<int> reserveList = reserve.Except(lost).ToList();
+            
             // 체육복을 잃어버리지 않은 학생 수
             int attend = n - lostList.Count;
 
