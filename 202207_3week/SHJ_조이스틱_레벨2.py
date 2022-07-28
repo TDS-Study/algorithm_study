@@ -31,12 +31,14 @@ def solution(string):
     # 13번 반례가 해결되지 않음.
     # # ABABAAAAABA: 좌우로 왔다갔다 하는 경우 
     if len(string) > 4 and string.find("A") >-1 :
-
+        
         reString = re.sub('[B-Z]','B', string)
         
+        #  붙어 있는 A를 리스트에 담기
         Alist = reString.split('B')
         Alist.sort(reverse= True)
-        # 붙어있는 A의 개수가 많으면 동작
+        
+        # 붙어있는 A의 개수가 많으면 실행.
         if len(Alist[0]) >= 2:
             n = len(Alist[0])
             idx = string.find(Alist[0])
