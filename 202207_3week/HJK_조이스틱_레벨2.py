@@ -13,7 +13,7 @@ def move_updown(name, current_index):
     
     return dist
 
-def move_leftright(name, direction):
+def move_leftright(name, target, answer, direction):
     dist = 0
     index = 0
     
@@ -31,37 +31,37 @@ def move_leftright(name, direction):
                 dist = i
                 index = i
                 break
-        
-        if dist_right <= dist_left:
-            dist = dist_right
-            index = index_right            
-        else:
-            dist = dist_left
-            index = index_left
-
-        answer += dist
-        # 위/아래 조작
-        answer += move_updown(name, index)
-        name[index] = "A"
-        l = name[index:]
-        r = name[:index]
-        
-        name = l + r
     
-    return dist, index
+    answer += dist
+    # 위/아래 조작
+    answer += move_updown(name, index)
+    name[index] = "A"
+
+    # 잘라서 시작위치가 0에 오게 만든다
+    l = name[index:]
+    r = name[:index]
+
+    name = l + r
+    
+    # 모두 A 일 때 까지 계속 좌/우로 이동
+    if name == target:
+        return answer
+    else:
+         l = move_leftright(name.copy(), target, answer, "LEFT")
+         r = move_leftright(name.copy(), target, answer, "RIGHT")
+
+        # 좌/우 중 최소값을 리턴
+         return l if l < r else r
 
 def solution(name):
     answer = 0
-    all_a = ["A" for _ in range(len(name))]
+    target = ["A" for _ in range(len(name))]
     name = [_ for _ in name]
     
-    current_index = 0
-    
-    
-    dist, index = 0, 0
-    dist_right, index_right = move_leftright(name.copy(), "RIGHT")
-    dist_left, index_left = move_leftright(name.copy(), "LEFT")
-        
+    r = move_leftright(name.copy(), target, 0, "RIGHT")
+    l = move_leftright(name.copy(), target, 0, "LEFT")
+
+    answer = l if l < r else r
         
     return answer
 
