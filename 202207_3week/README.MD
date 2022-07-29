@@ -14,6 +14,7 @@
 | 체육복  | 레벨1 | https://school.programmers.co.kr/learn/courses/30/lessons/42862 |
 | K번째수 | 레벨1 | https://school.programmers.co.kr/learn/courses/30/lessons/42748 |
 | 조이스틱 | 레벨2 | https://school.programmers.co.kr/learn/courses/30/lessons/42860 |
+| 소수 찾기 | 레벨2 | https://school.programmers.co.kr/learn/courses/30/lessons/42839 |
 
 ### 배운점
 + 
