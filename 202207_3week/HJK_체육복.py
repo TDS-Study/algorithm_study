@@ -9,16 +9,16 @@ def solution(n, lost, reserve):
 
     for i in lost:
         if i in reserve:
-            reserve.pop(reserve.index(i))
+            reserve.remoge(i)
             answer += 1
-            lost2.pop(lost2.index(i))
+            lost2.remove(i)
         
     for i in lost2:
         if i-1 in reserve:
-            reserve.pop(reserve.index(i-1))
+            reserve.remove(i-1)
             answer += 1        
         elif i+1 in reserve:
-            reserve.pop(reserve.index(i+1))
+            reserve.remove(i+1)
             answer += 1
     
     return answer
