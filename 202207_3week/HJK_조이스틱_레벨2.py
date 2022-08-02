@@ -1,5 +1,4 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42860
-
 # AAA 를 LAZ 로 바꾸는 것이 아니라 LAZ 를 AAA 로 바꾸면서 셈한다.
 
 def move_updown(name, current_index):
