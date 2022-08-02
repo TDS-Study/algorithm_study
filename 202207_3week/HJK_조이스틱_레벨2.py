@@ -6,6 +6,7 @@ def move_updown(name, current_index):
     dist = 0    
     current_char = name[current_index]
     
+    # 반대 방향으로 찾는 경우 보수를 사용
     if current_char >= 'N':
         dist = 91 - ord(current_char)
     else:
@@ -17,6 +18,10 @@ def move_leftright(name, target, answer, direction):
     dist = 0
     index = 0
     
+    # 왼쪽으로 이동하는 경우 보수를 사용하여 거리와 인덱스를 구한다
+    # ABABAAAAAB 
+    # 0123456789
+    # 0987654321 -> 왼쪽으로 2칸 이동하는경우 10(보수)-8(인덱스) = 2
     if direction == "LEFT":
         name_reverse = name[::-1]
         for i in range(len(name)):
