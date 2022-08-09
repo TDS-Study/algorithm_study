@@ -12,6 +12,7 @@
 | 문제명  | 난이도 | 주소 |
 | :---:  | :--- | :--- |
 | 2016년 | 레벨1 | https://school.programmers.co.kr/learn/courses/30/lessons/12901 |
+| 문자열 압축 | 레벨2 | https://school.programmers.co.kr/learn/courses/30/lessons/60057 |
 
 ### 배운점
 + 
